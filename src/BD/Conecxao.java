@@ -4,13 +4,16 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 public class Conecxao {
 
 	private static Connection conn;
 
+	//
 	public static Connection getConnection() {
 
 		try {
@@ -53,4 +56,25 @@ public class Conecxao {
 
 	}
 
+	public static void CloseSatement(Statement st) {
+		try {
+			if (st != null) {
+				st.close();
+			}
+		} catch (SQLException e) {
+			throw new DBexp(e.getMessage());
+		}
+
+	}
+
+	public static void CloseResultSet(ResultSet rs) {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			throw new DBexp(e.getMessage());
+		}
+
+	}
 }
