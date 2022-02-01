@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import BD.Conecxao;
+import Entityes.Seller;
 import Model.dao.DepartmentDao;
 import Model.dao.FactoryDao;
 import Model.dao.SellerDao;
@@ -17,39 +18,13 @@ public class Program {
 		// TODO Auto-generated method stub
 		
 		
-		
-		Connection con =  null ; 
-		Statement pt = null ; 
-		ResultSet rs = null ; 
-		
-		
-	
-		
-				try {
-			
-			con = Conecxao.getConnection();
-			pt = con.createStatement(); 
-			
-			rs = pt.executeQuery("SELECT * FROM Department"); 
-			
-			
-			while (rs.next()) {
-				System.out.println(rs.getInt("Id") + " "+rs.getString("Name"));
-			}
-		
 
-
-		}catch (SQLException e ) {
-			e.printStackTrace();
-		
-		}finally {
-			Conecxao.CloseSatement(pt);
-			Conecxao.CloseResultSet(rs); 
-			Conecxao.CloseConnection() ; 
+			SellerDao sel = FactoryDao.FactorySeller(); 
 			
 			
-			
-		}
+			System.out.println("==== Teste1 seller FindById === ");
+			Seller seller = sel.FindById(3); 
+			System.out.println(seller);
 		
 		
 	}
