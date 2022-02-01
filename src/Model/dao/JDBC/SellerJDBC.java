@@ -46,9 +46,9 @@ public class SellerJDBC implements SellerDao {
 		
 		try {
 			ps = conn.prepareStatement(
-					"SELECT seller.*,department.Name as DepName"
-					+ "FROM seller INNER JOIN department"
-					+ "ON seller.DepartmentId = department.Id"
+					"SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
 					+ "WHERE seller.Id = ?");  
 					
 			ps.setInt(1, Id);
@@ -107,6 +107,30 @@ public class SellerJDBC implements SellerDao {
 		
 		return sel ; 
 		
+	}
+
+	@Override
+	public List<Seller> FindByDepartment(Department obj) {
+		PreparedStatement ps = null ; 
+		ResultSet rs = null ; 
+		try {
+			ps = conn.prepareStatement(
+					"SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
+					+ "WHERE DepartmentId = ? "
+					+ "ORDER BY Name"); 
+			ps.setInt(1, obj.getID());
+			
+			rs = ps.executeQuery(); 
+			
+			
+		}catch (SQLException e ) {
+			throw new DBexp(e.getMessage() );
+		}
+		
+		
+		return null;
 	}
 	
 }
