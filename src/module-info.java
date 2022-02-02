@@ -1,2 +1,0 @@
-module Strore_Control {
-}
