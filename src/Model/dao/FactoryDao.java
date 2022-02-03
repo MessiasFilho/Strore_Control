@@ -7,7 +7,7 @@ import Model.dao.JDBC.SellerJDBC;
 public class FactoryDao {
 
 	public static DepartmentDao FactoryDepartment() { 
-		return new DepartmentJDBC(); 
+		return new DepartmentJDBC(Conecxao.getConnection() ); 
 	}
 	
 	public static SellerDao FactorySeller() { 
